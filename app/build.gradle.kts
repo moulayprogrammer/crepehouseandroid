@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.moulay.crepehouseandroid"
+    namespace = "com.moulay.krepehouse"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.moulay.crepehouseandroid"
+        applicationId = "com.moulay.krepehouse"
         minSdk = 28
         targetSdk = 35
         versionCode = 1
@@ -45,6 +45,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
+    implementation(libs.activity)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

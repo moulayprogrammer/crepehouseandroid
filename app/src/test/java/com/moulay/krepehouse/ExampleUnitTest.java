@@ -1,4 +1,4 @@
-package com.moulay.crepehouseandroid;
+package com.moulay.krepehouse;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.moulay.crepehouseandroid;
+package com.moulay.krepehouse;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.moulay.crepehouseandroid", appContext.getPackageName());
+        assertEquals("com.moulay.krepehouse", appContext.getPackageName());
     }
 }
