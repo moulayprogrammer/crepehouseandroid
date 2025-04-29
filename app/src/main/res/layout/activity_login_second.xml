@@ -1,0 +1,138 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="#f8f8f8"
+    android:layoutDirection="rtl">
+
+    <!-- Left Side: Form -->
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_background_right"
+        android:clipToOutline="true"
+        android:outlineProvider="background"
+        android:gravity="center">
+
+        <!-- Background Image (clipped inside rounded corner) -->
+        <ImageView
+            android:id="@+id/backgroundImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/premiumphoto17077574423968784df68d028"
+            android:scaleType="centerCrop" />
+
+        <!-- Black Overlay with opacity -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#000000"
+            android:alpha="0.1" />
+
+        <!-- Logo -->
+        <ImageView
+            android:id="@+id/logoImage"
+            android:src="@drawable/restaurant_icon"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crepe House"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="32sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="75dp"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
+
+    <!-- Right Side: Logo -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp">
+
+        <!-- Welcome Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="مرحباً"
+            android:textColor="#4CAF50"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:textAlignment="center"/>
+
+        <!-- Subtitle -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="الرجاء تسجيل الدخول بمعلوماتك"
+            android:textColor="@android:color/black"
+            android:alpha="0.7"
+            android:textSize="16sp"
+            android:textAlignment="center"/>
+
+        <!-- Space -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="32dp" />
+
+        <!-- Username Field -->
+        <EditText
+            android:id="@+id/etUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="اسم المستخدم"
+            android:background="@drawable/rounded_edittext"
+            android:padding="16dp"
+            android:textAlignment="viewStart"
+            android:textDirection="rtl"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"
+            android:imeOptions="actionDone"/>
+
+        <!-- Password Field -->
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="كلمة المرور"
+            android:inputType="textPassword"
+            android:background="@drawable/rounded_edittext"
+            android:padding="16dp"
+            android:textAlignment="viewStart"
+            android:textDirection="rtl"
+            android:textSize="16sp"
+            android:layout_marginBottom="24dp"
+            android:drawableEnd="@drawable/ic_visibility"
+            android:drawableRight="@drawable/ic_visibility"
+            android:drawablePadding="12dp"
+            android:imeOptions="actionDone"/>
+
+        <!-- Login Button -->
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="تسجيل الدخول"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:textStyle="bold"
+            android:onClick="OnLoginClick"/>
+
+    </LinearLayout>
+
+</LinearLayout>
