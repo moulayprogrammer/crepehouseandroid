@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements SocketGetFoodTask
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_second);
+        setContentView(R.layout.activity_main);
 
         //getAllFood = findViewById(R.id.btn_get_all_food);
 
