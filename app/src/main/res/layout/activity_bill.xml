@@ -1,0 +1,182 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layoutDirection="rtl"
+    android:background="#F8F8F8"
+    android:padding="16dp">
+
+    <!-- Right Panel: Product selection display -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_card"
+        android:padding="16dp">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="إضافة طلبية"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#4CAF50"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Order Info: Number + Date -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layoutDirection="rtl"
+            android:layout_marginBottom="12dp"
+            android:gravity="end">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="الرقم"
+                android:background="@drawable/rounded_edittext"
+                android:padding="12dp"
+                android:textAlignment="viewStart"
+                android:textDirection="rtl"
+                android:textSize="14sp"
+                android:layout_marginEnd="8dp"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="التاريخ"
+                android:background="@drawable/rounded_edittext"
+                android:padding="12dp"
+                android:textAlignment="viewStart"
+                android:textDirection="rtl"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Search Bar -->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ابحث عن منتج"
+            android:background="@drawable/rounded_edittext"
+            android:padding="12dp"
+            android:textAlignment="viewStart"
+            android:textDirection="rtl"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Product display area (dynamic content) -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSelectedProducts"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_edittext"
+            android:clipToPadding="false"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:orientation="vertical"/>
+            <!-- Dynamic product views will go here -->
+
+    </LinearLayout>
+
+    <!-- Left Panel: Search, Table, Total, Buttons -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1.2"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/rounded_card"
+        android:padding="16dp">
+
+        <!-- Search Fields -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="الكمية"
+                android:background="@drawable/rounded_edittext"
+                android:padding="10dp"
+                android:textDirection="rtl"
+                android:textSize="14sp"
+                android:layout_marginEnd="8dp"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="السعر"
+                android:background="@drawable/rounded_edittext"
+                android:padding="10dp"
+                android:textDirection="rtl"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <!-- Product List (Table-like view) -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPurchasedProducts"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_edittext"
+            android:clipToPadding="false"
+            android:padding="8dp"
+            android:layout_margin="8dp"
+            />
+
+        <!-- Total Price -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="999,999,999"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:background="@drawable/rounded_total_background"
+            android:textColor="#FFF"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
+            android:padding="10dp"/>
+
+        <!-- Confirm & Cancel Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="إلغاء"
+                android:backgroundTint="#F44336"
+                android:textColor="#FFF"
+                android:textSize="16sp"
+                android:layout_marginLeft="10dp"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="تأكيد"
+                android:backgroundTint="#4CAF50"
+                android:textColor="#FFF"
+                android:textSize="16sp"
+                android:layout_marginEnd="8dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
