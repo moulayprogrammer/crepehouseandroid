@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:title="الرئيسية"
+        android:icon="@drawable/ic_visibility" />
+
+    <item
+        android:id="@+id/nav_orders"
+        android:title="الطلبيات"
+        android:icon="@drawable/ic_visibility" />
+
+    <item
+        android:id="@+id/nav_logout"
+        android:title="تسجيل الخروج"
+        android:icon="@drawable/ic_visibility" />
+</menu>

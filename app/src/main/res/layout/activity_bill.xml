@@ -45,9 +45,11 @@
                 android:textAlignment="viewStart"
                 android:textDirection="rtl"
                 android:textSize="14sp"
-                android:layout_marginEnd="8dp"/>
+                android:layout_marginEnd="8dp"
+                android:inputType="number" />
 
             <EditText
+                android:id="@+id/etDate"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -56,11 +58,15 @@
                 android:padding="12dp"
                 android:textAlignment="viewStart"
                 android:textDirection="rtl"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:focusable="false"
+                android:clickable="true" />
+
         </LinearLayout>
 
         <!-- Search Bar -->
         <EditText
+            android:id="@+id/etSearchProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="ابحث عن منتج"
@@ -69,7 +75,10 @@
             android:textAlignment="viewStart"
             android:textDirection="rtl"
             android:textSize="14sp"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="16dp"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="8dp"/>
+
 
         <!-- Product display area (dynamic content) -->
         <androidx.recyclerview.widget.RecyclerView
