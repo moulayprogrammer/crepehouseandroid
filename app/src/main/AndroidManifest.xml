@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".SalesActivity"
             android:exported="true"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.CrepeHouseAndroid">
@@ -36,6 +36,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".BillActivity" />
     </application>
 
 </manifest>

@@ -1,191 +1,246 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     android:layoutDirection="rtl"
-    android:background="#F8F8F8"
-    android:padding="16dp">
+    android:background="#F8F8F8">
 
-    <!-- Right Panel: Product selection display -->
+    <!-- Toolbar with back button -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4CAF50"
+        android:elevation="4dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layoutDirection="rtl"
+            android:contentInsetStart="0dp"
+            android:contentInsetEnd="0dp"
+            android:background="@color/primary">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <TextView
+                    android:id="@+id/tvNavTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center_vertical"
+                    android:text="إضافة طلبية"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="end|center_vertical"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_back"
+                    android:contentDescription="رجوع" />
+            </FrameLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Your original layout (dual pane) -->
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="2"
+        android:id="@+id/mainContent"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/rounded_card"
+        android:orientation="horizontal"
+        android:layout_below="@id/appbar"
+        android:layoutDirection="rtl"
         android:padding="16dp">
 
-        <!-- Title -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="إضافة طلبية"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="#4CAF50"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Order Info: Number + Date -->
         <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
             android:layoutDirection="rtl"
-            android:layout_marginBottom="12dp"
-            android:gravity="end">
+            android:background="#F8F8F8"
+            android:padding="16dp">
 
-            <EditText
+            <!-- Right Panel: Product selection display -->
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:hint="الرقم"
-                android:background="@drawable/rounded_edittext"
-                android:padding="12dp"
-                android:textAlignment="viewStart"
-                android:textDirection="rtl"
-                android:textSize="14sp"
-                android:layout_marginEnd="8dp"
-                android:inputType="number" />
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/rounded_card"
+                android:padding="16dp">
 
-            <EditText
-                android:id="@+id/etDate"
+                <!-- Order Info: Number + Date -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layoutDirection="rtl"
+                    android:layout_marginBottom="12dp"
+                    android:gravity="end">
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:hint="الرقم"
+                        android:background="@drawable/rounded_edittext"
+                        android:padding="12dp"
+                        android:textAlignment="viewStart"
+                        android:textDirection="rtl"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="8dp"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/etDate"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:hint="التاريخ"
+                        android:background="@drawable/rounded_edittext"
+                        android:padding="12dp"
+                        android:textAlignment="viewStart"
+                        android:textDirection="rtl"
+                        android:textSize="14sp"
+                        android:focusable="false"
+                        android:clickable="true" />
+
+                </LinearLayout>
+
+                <!-- Search Bar -->
+                <EditText
+                    android:id="@+id/etSearchProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="ابحث عن منتج"
+                    android:background="@drawable/rounded_edittext"
+                    android:padding="12dp"
+                    android:textAlignment="viewStart"
+                    android:textDirection="rtl"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="16dp"
+                    android:drawableStart="@drawable/ic_search"
+                    android:drawablePadding="8dp"/>
+
+
+                <!-- Product display area (dynamic content) -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSelectedProducts"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_edittext"
+                    android:clipToPadding="false"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:orientation="vertical"/>
+                <!-- Dynamic product views will go here -->
+
+            </LinearLayout>
+
+            <!-- Left Panel: Search, Table, Total, Buttons -->
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:hint="التاريخ"
-                android:background="@drawable/rounded_edittext"
-                android:padding="12dp"
-                android:textAlignment="viewStart"
-                android:textDirection="rtl"
-                android:textSize="14sp"
-                android:focusable="false"
-                android:clickable="true" />
+                android:layout_weight="1.2"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/rounded_card"
+                android:padding="16dp">
 
+                <!-- Search Fields -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:hint="الكمية"
+                        android:background="@drawable/rounded_edittext"
+                        android:padding="10dp"
+                        android:textDirection="rtl"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="8dp"/>
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:hint="السعر"
+                        android:background="@drawable/rounded_edittext"
+                        android:padding="10dp"
+                        android:textDirection="rtl"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+
+                <!-- Product List (Table-like view) -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPurchasedProducts"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_edittext"
+                    android:clipToPadding="false"
+                    android:padding="8dp"
+                    android:layout_margin="8dp"
+                    />
+
+                <!-- Total Price -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="999,999,999"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:background="@drawable/rounded_total_background"
+                    android:textColor="#FFF"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:padding="10dp"/>
+
+                <!-- Confirm & Cancel Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal">
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="إلغاء"
+                        android:backgroundTint="#F44336"
+                        android:textColor="#FFF"
+                        android:textSize="16sp"
+                        android:layout_marginLeft="10dp"/>
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="تأكيد"
+                        android:backgroundTint="#4CAF50"
+                        android:textColor="#FFF"
+                        android:textSize="16sp"
+                        android:layout_marginEnd="8dp"/>
+
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
-
-        <!-- Search Bar -->
-        <EditText
-            android:id="@+id/etSearchProduct"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="ابحث عن منتج"
-            android:background="@drawable/rounded_edittext"
-            android:padding="12dp"
-            android:textAlignment="viewStart"
-            android:textDirection="rtl"
-            android:textSize="14sp"
-            android:layout_marginBottom="16dp"
-            android:drawableStart="@drawable/ic_search"
-            android:drawablePadding="8dp"/>
-
-
-        <!-- Product display area (dynamic content) -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvSelectedProducts"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/rounded_edittext"
-            android:clipToPadding="false"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:orientation="vertical"/>
-            <!-- Dynamic product views will go here -->
 
     </LinearLayout>
-
-    <!-- Left Panel: Search, Table, Total, Buttons -->
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="1.2"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginStart="12dp"
-        android:background="@drawable/rounded_card"
-        android:padding="16dp">
-
-        <!-- Search Fields -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="8dp">
-
-            <EditText
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:hint="الكمية"
-                android:background="@drawable/rounded_edittext"
-                android:padding="10dp"
-                android:textDirection="rtl"
-                android:textSize="14sp"
-                android:layout_marginEnd="8dp"/>
-
-            <EditText
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:hint="السعر"
-                android:background="@drawable/rounded_edittext"
-                android:padding="10dp"
-                android:textDirection="rtl"
-                android:textSize="14sp"/>
-        </LinearLayout>
-
-        <!-- Product List (Table-like view) -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvPurchasedProducts"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/rounded_edittext"
-            android:clipToPadding="false"
-            android:padding="8dp"
-            android:layout_margin="8dp"
-            />
-
-        <!-- Total Price -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="999,999,999"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:background="@drawable/rounded_total_background"
-            android:textColor="#FFF"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="12dp"
-            android:padding="10dp"/>
-
-        <!-- Confirm & Cancel Buttons -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal">
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="إلغاء"
-                android:backgroundTint="#F44336"
-                android:textColor="#FFF"
-                android:textSize="16sp"
-                android:layout_marginLeft="10dp"/>
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="تأكيد"
-                android:backgroundTint="#4CAF50"
-                android:textColor="#FFF"
-                android:textSize="16sp"
-                android:layout_marginEnd="8dp"/>
-
-        </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

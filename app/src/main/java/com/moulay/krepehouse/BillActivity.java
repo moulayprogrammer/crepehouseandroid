@@ -1,11 +1,11 @@
 package com.moulay.krepehouse;
 
 import android.app.DatePickerDialog;
+import android.icu.util.Calendar;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ImageButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,55 +17,21 @@ import com.moulay.krepehouse.Models.Product;
 import com.moulay.krepehouse.Models.PurchasedProduct;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class BillActivity extends AppCompatActivity {
-
-    private EditText etSaleNumber, etDate, etSearchProduct, etQuantity, etPrice;
-    private TextView tvTotal;
-    private Button btnCancel, btnConfirm;
-    private RecyclerView rvSelectedProducts, rvPurchasedProducts;
-    private ProductAdapter productAdapter;
-    private PurchasedProductAdapter purchasedProductAdapter;
-    private List<Product> productList;
-    private List<PurchasedProduct> purchasedProductList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bill);
 
-        // Initialize views
-        initViews();
+        ImageButton btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
 
-        // Setup date picker
-        setupDatePicker();
+        //date pciker field
+        EditText etDate = findViewById(R.id.etDate);
 
-        // Setup RecyclerViews
-        setupRecyclerViews();
-
-        // Setup buttons
-        setupButtons();
-    }
-
-    private void initViews() {
-        // Right Panel
-        //TODO etSaleNumber = findViewById(R.id.etSaleNumber);
-        etDate = findViewById(R.id.etDate);
-        etSearchProduct = findViewById(R.id.etSearchProduct);
-        rvSelectedProducts = findViewById(R.id.rvSelectedProducts);
-
-        //TODO Left Panel
-        /*etQuantity = findViewById(R.id.etQuantity);
-        etPrice = findViewById(R.id.etPrice);
-        rvPurchasedProducts = findViewById(R.id.rvPurchasedProducts);
-        tvTotal = findViewById(R.id.tvTotal);
-        btnCancel = findViewById(R.id.btnCancel);
-        btnConfirm = findViewById(R.id.btnConfirm);*/
-    }
-
-    private void setupDatePicker() {
         etDate.setOnClickListener(v -> {
             final Calendar calendar = Calendar.getInstance();
             int year = calendar.get(Calendar.YEAR);
@@ -80,89 +46,48 @@ public class BillActivity extends AppCompatActivity {
                     },
                     year, month, day
             );
+
             datePickerDialog.show();
         });
-    }
 
-    private void setupRecyclerViews() {
-        // Products RecyclerView
-        rvSelectedProducts.setLayoutManager(new GridLayoutManager(this, 3));
+        //TODO: search product field  logic needs to be implemted
 
-        productList = new ArrayList<>();
-        productList.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        productList.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        productList.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        productList.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        productList.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        productList.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        productList.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        productList.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        productList.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
+        //Products rv
+        RecyclerView rvSelectedProducts = findViewById(R.id.rvSelectedProducts);
+        rvSelectedProducts.setLayoutManager(new GridLayoutManager(this, 2)); // 2 columns
 
-        productAdapter = new ProductAdapter(productList);
-        rvSelectedProducts.setAdapter(productAdapter);
+        List<Product> products = new ArrayList<>();
+        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
+        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
+        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
+        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
+        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
+        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
+        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
+        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
+        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
+        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
+        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
+        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
+        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
 
-        // Purchased Products RecyclerView
+        ProductAdapter adapter = new ProductAdapter(products);
+        rvSelectedProducts.setAdapter(adapter);
+
+        //Purchased Products rv
+        RecyclerView rvPurchasedProducts = findViewById(R.id.rvPurchasedProducts);
         rvPurchasedProducts.setLayoutManager(new LinearLayoutManager(this));
 
-        purchasedProductList = new ArrayList<>();
-        purchasedProductList.add(new PurchasedProduct(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "x2", "240 دج"));
-        purchasedProductList.add(new PurchasedProduct(R.drawable.premiumphoto17077574423968784df68d028, "خبز", "Pain", "x3", "90 دج"));
-        purchasedProductList.add(new PurchasedProduct(R.drawable.premiumphoto17077574423968784df68d028, "خبز", "Pain", "x3", "90 دج"));
-        purchasedProductList.add(new PurchasedProduct(R.drawable.premiumphoto17077574423968784df68d028, "خبز", "Pain", "x3", "90 دج"));
+        List<PurchasedProduct> purchasedProducts = new ArrayList<>();
+        purchasedProducts.add(new PurchasedProduct(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "x2", "240 دج"));
+        purchasedProducts.add(new PurchasedProduct(R.drawable.premiumphoto17077574423968784df68d028, "خبز", "Pain", "x3", "90 دج"));
+        purchasedProducts.add(new PurchasedProduct(R.drawable.premiumphoto17077574423968784df68d028, "خبز", "Pain", "x3", "90 دج"));
+        purchasedProducts.add(new PurchasedProduct(R.drawable.premiumphoto17077574423968784df68d028, "خبز", "Pain", "x3", "90 دج"));
+        purchasedProducts.add(new PurchasedProduct(R.drawable.premiumphoto17077574423968784df68d028, "خبز", "Pain", "x3", "90 دج"));
+        purchasedProducts.add(new PurchasedProduct(R.drawable.premiumphoto17077574423968784df68d028, "خبز", "Pain", "x3", "90 دج"));
 
-        purchasedProductAdapter = new PurchasedProductAdapter(purchasedProductList);
-        rvPurchasedProducts.setAdapter(purchasedProductAdapter);
+        PurchasedProductAdapter purchasedProductsAdapter = new PurchasedProductAdapter(purchasedProducts);
+        rvPurchasedProducts.setAdapter(purchasedProductsAdapter);
 
-        // Calculate initial total
-        calculateTotal();
-    }
-
-    private void setupButtons() {
-        btnCancel.setOnClickListener(v -> finish());
-
-        btnConfirm.setOnClickListener(v -> saveBill());
-    }
-
-    private void calculateTotal() {
-        double total = 0;
-        for (PurchasedProduct product : purchasedProductList) {
-            // Extract numeric value from price string (e.g., "240 دج" -> 240)
-            String priceStr = product.getPrice().replaceAll("[^0-9.]", "");
-            try {
-                total += Double.parseDouble(priceStr);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
-        }
-        tvTotal.setText(String.format("%,.0f دج", total));
-    }
-
-    private void saveBill() {
-        if (etSaleNumber.getText().toString().isEmpty()) {
-            etSaleNumber.setError("الرجاء إدخال رقم البيع");
-            return;
-        }
-
-        if (etDate.getText().toString().isEmpty()) {
-            etDate.setError("الرجاء اختيار التاريخ");
-            return;
-        }
-
-        if (purchasedProductList.isEmpty()) {
-            Toast.makeText(this, "الرجاء إضافة منتجات للفاتورة", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // TODO: Save to database
-        // Get bill number and date
-        String billNumber = etSaleNumber.getText().toString();
-        String billDate = etDate.getText().toString();
-
-        // Save bill and products
-        // DatabaseHelper.saveBill(billNumber, billDate, purchasedProductList);
-
-        Toast.makeText(this, "تم حفظ الفاتورة بنجاح", Toast.LENGTH_SHORT).show();
-        finish();
     }
 }

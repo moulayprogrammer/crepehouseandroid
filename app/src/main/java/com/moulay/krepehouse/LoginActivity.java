@@ -19,14 +19,15 @@ public class LoginActivity extends AppCompatActivity implements SocketLoginTask.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
+        
     }
 
     public void OnLoginClick(View view) {
+
 
         String username = String.valueOf(etUsername.getText()).trim();
         String password = String.valueOf(etPassword.getText()).trim();
@@ -43,6 +44,10 @@ public class LoginActivity extends AppCompatActivity implements SocketLoginTask.
             new SocketLoginTask(this,vendor).execute();
 
         }else System.out.println("empty handle");
+
+        Intent intent = new Intent(LoginActivity.this, SalesActivity.class);
+        startActivity(intent);
+        //finish();
 
     }
 
@@ -61,7 +66,7 @@ public class LoginActivity extends AppCompatActivity implements SocketLoginTask.
                 vendor.setCreateAt(vendorReceive.getCreateAt());
                 vendor.setUpdateAt(vendorReceive.getUpdateAt());
 
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, SalesActivity.class));
 
             }else  Toast.makeText(LoginActivity.this, "تحقق من اسم المستخدم و كلمة السر " , Toast.LENGTH_SHORT).show();
         });

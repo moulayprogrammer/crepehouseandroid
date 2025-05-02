@@ -5,16 +5,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.moulay.krepehouse.Models.PurchasedProduct;
+import com.moulay.krepehouse.R;
+
+import java.util.ArrayList;
 import java.util.List;
-import  com.moulay.krepehouse.R;
+
 public class PurchasedProductAdapter extends RecyclerView.Adapter<PurchasedProductAdapter.ViewHolder> {
 
     private List<PurchasedProduct> products;
 
     public PurchasedProductAdapter(List<PurchasedProduct> products) {
-        this.products = products;
+        this.products = products != null ? products : new ArrayList<>();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -40,17 +45,32 @@ public class PurchasedProductAdapter extends RecyclerView.Adapter<PurchasedProdu
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        PurchasedProduct purchasedProduct = products.get(position);
-        holder.imgProduct.setImageResource(purchasedProduct.getImageResId());
-        holder.tvNameArabic.setText(purchasedProduct.getNameArabic());
-        holder.tvNameFrench.setText(purchasedProduct.getNameFrench());
-        holder.tvQuantity.setText(purchasedProduct.getQuantity());
-        holder.tvPrice.setText(purchasedProduct.getPrice());
+        PurchasedProduct product = products.get(position);
+        holder.imgProduct.setImageResource(product.getImageResId());
+        holder.tvNameArabic.setText(product.getNameArabic());
+        holder.tvNameFrench.setText(product.getNameFrench());
+        holder.tvQuantity.setText(product.getQuantity());
+        holder.tvPrice.setText(product.getPrice());
     }
 
     @Override
     public int getItemCount() {
         return products.size();
     }
-}
 
+    /**
+     * Update the list of purchased products.
+     */
+    public void setProducts(List<PurchasedProduct> newProducts) {
+        this.products = newProducts != null ? newProducts : new ArrayList<>();
+        notifyDataSetChanged();
+    }
+
+    /**
+     * Add a product to the list.
+     */
+    public void addProduct(PurchasedProduct product) {
+        products.add(product);
+        notifyItemInserted(products.size() - 1);
+    }
+}

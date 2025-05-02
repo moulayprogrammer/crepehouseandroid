@@ -7,7 +7,7 @@
     <!-- Optional: light border only on rounded side -->
     <stroke
         android:width="2dp"
-        android:color="#4CAF50"/> <!-- Light gray border -->
+        android:color="@color/primary"/> <!-- Light gray border -->
 
     <!-- Only round the right side -->
     <corners

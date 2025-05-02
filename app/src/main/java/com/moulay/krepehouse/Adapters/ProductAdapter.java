@@ -14,6 +14,16 @@ import android.view.LayoutInflater;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     private List<Product> productList;
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(Product product);
+    }
+
+    public ProductAdapter(List<Product> productList) {
+        this.productList = productList;
+        this.listener = listener;
+    }
 
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
@@ -28,17 +38,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             nameFrench = itemView.findViewById(R.id.tvProductNameFrench);
             price = itemView.findViewById(R.id.tvProductPrice);
         }
-    }
 
-    public ProductAdapter(List<Product> productList) {
-        this.productList = productList;
+        public void bind(Product product, OnItemClickListener listener) {
+            itemView.setOnClickListener(v -> listener.onItemClick(product));
+        }
     }
 
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_product_card, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product_card, parent, false);
         return new ProductViewHolder(view);
     }
 
@@ -49,6 +58,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.nameArabic.setText(product.getNameArabic());
         holder.nameFrench.setText(product.getNameFrench());
         holder.price.setText(product.getPrice());
+        holder.bind(product, listener);
     }
 
     @Override
@@ -56,4 +66,5 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         return productList.size();
     }
 }
+
 
