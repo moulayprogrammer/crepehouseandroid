@@ -58,7 +58,7 @@
         android:orientation="horizontal"
         android:layout_below="@id/appbar"
         android:layoutDirection="rtl"
-        android:padding="16dp">
+        android:padding="5dp">
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -66,8 +66,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:layoutDirection="rtl"
-            android:background="#F8F8F8"
-            android:padding="16dp">
+            android:background="#F8F8F8">
 
             <!-- Right Panel: Product selection display -->
             <LinearLayout
@@ -76,7 +75,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:background="@drawable/rounded_card"
-                android:padding="16dp">
+                android:padding="5dp">
 
                 <!-- Order Info: Number + Date -->
                 <LinearLayout
@@ -84,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layoutDirection="rtl"
-                    android:layout_marginBottom="12dp"
+                    android:layout_marginBottom="5dp"
                     android:gravity="end">
 
                     <EditText
@@ -93,7 +92,6 @@
                         android:layout_height="wrap_content"
                         android:hint="الرقم"
                         android:background="@drawable/rounded_edittext"
-                        android:padding="12dp"
                         android:textAlignment="viewStart"
                         android:textDirection="rtl"
                         android:textSize="14sp"
@@ -107,13 +105,11 @@
                         android:layout_height="wrap_content"
                         android:hint="التاريخ"
                         android:background="@drawable/rounded_edittext"
-                        android:padding="12dp"
                         android:textAlignment="viewStart"
                         android:textDirection="rtl"
                         android:textSize="14sp"
                         android:focusable="false"
                         android:clickable="true" />
-
                 </LinearLayout>
 
                 <!-- Search Bar -->
@@ -123,11 +119,10 @@
                     android:layout_height="wrap_content"
                     android:hint="ابحث عن منتج"
                     android:background="@drawable/rounded_edittext"
-                    android:padding="12dp"
                     android:textAlignment="viewStart"
                     android:textDirection="rtl"
                     android:textSize="14sp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="8dp"
                     android:drawableStart="@drawable/ic_search"
                     android:drawablePadding="8dp"/>
 
@@ -155,14 +150,14 @@
                 android:orientation="vertical"
                 android:layout_marginStart="12dp"
                 android:background="@drawable/rounded_card"
-                android:padding="16dp">
+                android:padding="5dp">
 
                 <!-- Search Fields -->
-                <LinearLayout
+                <!--<LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginBottom="5dp">
 
                     <EditText
                         android:layout_width="0dp"
@@ -170,7 +165,6 @@
                         android:layout_height="wrap_content"
                         android:hint="الكمية"
                         android:background="@drawable/rounded_edittext"
-                        android:padding="10dp"
                         android:textDirection="rtl"
                         android:textSize="14sp"
                         android:layout_marginEnd="8dp"/>
@@ -181,10 +175,9 @@
                         android:layout_height="wrap_content"
                         android:hint="السعر"
                         android:background="@drawable/rounded_edittext"
-                        android:padding="10dp"
                         android:textDirection="rtl"
                         android:textSize="14sp"/>
-                </LinearLayout>
+                </LinearLayout>-->
 
                 <!-- Product List (Table-like view) -->
                 <androidx.recyclerview.widget.RecyclerView
@@ -194,9 +187,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/rounded_edittext"
                     android:clipToPadding="false"
-                    android:padding="8dp"
-                    android:layout_margin="8dp"
-                    />
+                    android:padding="8dp" />
 
                 <!-- Total Price -->
                 <TextView
@@ -208,8 +199,7 @@
                     android:background="@drawable/rounded_total_background"
                     android:textColor="#FFF"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="12dp"
-                    android:padding="10dp"/>
+                    android:padding="3dp"/>
 
                 <!-- Confirm & Cancel Buttons -->
                 <LinearLayout
@@ -225,8 +215,8 @@
                         android:text="إلغاء"
                         android:backgroundTint="#F44336"
                         android:textColor="#FFF"
-                        android:textSize="16sp"
-                        android:layout_marginLeft="10dp"/>
+                        android:textSize="14sp"
+                        android:layout_marginLeft="5dp"/>
 
                     <Button
                         android:layout_width="0dp"
@@ -235,8 +225,7 @@
                         android:text="تأكيد"
                         android:backgroundTint="#4CAF50"
                         android:textColor="#FFF"
-                        android:textSize="16sp"
-                        android:layout_marginEnd="8dp"/>
+                        android:textSize="14sp"/>
 
                 </LinearLayout>
             </LinearLayout>

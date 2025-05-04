@@ -11,14 +11,14 @@
 
     <!-- Only round the right side -->
     <corners
-        android:topRightRadius="32dp"
-        android:bottomRightRadius="32dp"
-        android:topLeftRadius="32dp"
-        android:bottomLeftRadius="32dp" />
+        android:topRightRadius="10dp"
+        android:bottomRightRadius="10dp"
+        android:topLeftRadius="10dp"
+        android:bottomLeftRadius="10dp" />
 
     <padding
-        android:left="24dp"
-        android:top="24dp"
-        android:right="24dp"
-        android:bottom="24dp" />
+        android:left="10dp"
+        android:top="10dp"
+        android:right="10dp"
+        android:bottom="10dp" />
 </shape>

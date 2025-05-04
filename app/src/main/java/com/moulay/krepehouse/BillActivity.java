@@ -56,7 +56,7 @@ public class BillActivity extends AppCompatActivity implements ServerGetFoodTask
 
         //Products rv
         RecyclerView rvFoods = findViewById(R.id.rvSelectedProducts);
-        rvFoods.setLayoutManager(new GridLayoutManager(this, 2)); // 2 columns
+        rvFoods.setLayoutManager(new GridLayoutManager(this, 3)); // 2 columns
         List<Food> foodArrayList = new ArrayList<>();
         foodAdapter = new FoodAdapter(foodArrayList,this,getApplicationContext());
         rvFoods.setAdapter(foodAdapter);

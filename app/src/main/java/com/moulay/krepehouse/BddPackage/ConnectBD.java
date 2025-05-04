@@ -13,7 +13,7 @@ public class ConnectBD {
 
     public  Connection connect() {
         Connection conn = null;
-        String url = "jdbc:mariadb://192.168.1.34:3306/crepehouse";
+        String url = "jdbc:mariadb://192.168.11.54:3306/crepehouse";
 
         String user = "remote_user";
         String password = "12345";
