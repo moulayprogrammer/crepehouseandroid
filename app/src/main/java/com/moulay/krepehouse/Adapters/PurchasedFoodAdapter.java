@@ -1,5 +1,7 @@
 package com.moulay.krepehouse.Adapters;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,30 +10,31 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.moulay.krepehouse.Models.PurchasedProduct;
+import com.bumptech.glide.Glide;
+import com.moulay.krepehouse.Models.Food;
 import com.moulay.krepehouse.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PurchasedProductAdapter extends RecyclerView.Adapter<PurchasedProductAdapter.ViewHolder> {
+public class PurchasedFoodAdapter extends RecyclerView.Adapter<PurchasedFoodAdapter.ViewHolder> {
 
-    private List<PurchasedProduct> products;
+    private List<Food> foods;
+    private Context context;
 
-    public PurchasedProductAdapter(List<PurchasedProduct> products) {
-        this.products = products != null ? products : new ArrayList<>();
+    public PurchasedFoodAdapter(List<Food> foods) {
+        this.foods = foods != null ? foods : new ArrayList<>();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imgProduct;
-        TextView tvNameArabic, tvNameFrench, tvQuantity, tvPrice;
+        TextView tvNameArabic, tvNameFrench, tvPrice;
 
         public ViewHolder(View itemView) {
             super(itemView);
             imgProduct = itemView.findViewById(R.id.ivProductImage);
             tvNameArabic = itemView.findViewById(R.id.tvProductNameArabic);
             tvNameFrench = itemView.findViewById(R.id.tvProductNameFrench);
-            tvQuantity = itemView.findViewById(R.id.tvQuantity);
             tvPrice = itemView.findViewById(R.id.tvProductPrice);
         }
     }
@@ -45,32 +48,32 @@ public class PurchasedProductAdapter extends RecyclerView.Adapter<PurchasedProdu
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        PurchasedProduct product = products.get(position);
-        holder.imgProduct.setImageResource(product.getImageResId());
-        holder.tvNameArabic.setText(product.getNameArabic());
-        holder.tvNameFrench.setText(product.getNameFrench());
-        holder.tvQuantity.setText(product.getQuantity());
-        holder.tvPrice.setText(product.getPrice());
+        Food food = foods.get(position);
+        Glide.with(context).load(food.getPicture()).into(holder.imgProduct);
+        holder.tvNameArabic.setText(food.getNameAr());
+        holder.tvNameFrench.setText(food.getNameFr());
+        holder.tvPrice.setText(String.valueOf(food.getPrice()));
     }
 
     @Override
     public int getItemCount() {
-        return products.size();
+        return foods.size();
     }
 
     /**
-     * Update the list of purchased products.
+     * Update the list of foods.
      */
-    public void setProducts(List<PurchasedProduct> newProducts) {
-        this.products = newProducts != null ? newProducts : new ArrayList<>();
+    @SuppressLint("NotifyDataSetChanged")
+    public void setFoods(List<Food> newFoods) {
+        this.foods = newFoods != null ? newFoods : new ArrayList<>();
         notifyDataSetChanged();
     }
 
     /**
-     * Add a product to the list.
+     * Add a food to the list.
      */
-    public void addProduct(PurchasedProduct product) {
-        products.add(product);
-        notifyItemInserted(products.size() - 1);
+    public void addFood(Food food) {
+        foods.add(food);
+        notifyItemInserted(foods.size() - 1);
     }
 }

@@ -2,6 +2,7 @@ package com.moulay.krepehouse;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -9,9 +10,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.moulay.krepehouse.Models.Vendor;
-import com.moulay.krepehouse.Socket.SocketLoginTask;
+import com.moulay.krepehouse.Server.ServerLoginTask;
 
-public class LoginActivity extends AppCompatActivity implements SocketLoginTask.SocketLoginCallback {
+public class LoginActivity extends AppCompatActivity implements ServerLoginTask.SocketLoginCallback {
 
     EditText etUsername,etPassword;
     Vendor vendor = Vendor.getInstance();
@@ -41,13 +42,9 @@ public class LoginActivity extends AppCompatActivity implements SocketLoginTask.
             vendor.setPassword(password);
 
             // Start socket communication
-            new SocketLoginTask(this,vendor).execute();
+            new ServerLoginTask(this,vendor).execute();
 
         }else System.out.println("empty handle");
-
-        Intent intent = new Intent(LoginActivity.this, SalesActivity.class);
-        startActivity(intent);
-        //finish();
 
     }
 
@@ -57,18 +54,13 @@ public class LoginActivity extends AppCompatActivity implements SocketLoginTask.
         runOnUiThread(() -> {
             if (vendorReceive != null){
 
-                vendor.setUniqueId(vendorReceive.getUniqueId());
                 vendor.setName(vendorReceive.getName());
-                vendor.setPhone(vendorReceive.getPhone());
-                vendor.setUsername(vendorReceive.getUsername());
-                vendor.setPassword(vendorReceive.getPassword());
-                vendor.setArchive(vendorReceive.getArchive());
-                vendor.setCreateAt(vendorReceive.getCreateAt());
-                vendor.setUpdateAt(vendorReceive.getUpdateAt());
 
                 startActivity(new Intent(this, SalesActivity.class));
 
-            }else  Toast.makeText(LoginActivity.this, "تحقق من اسم المستخدم و كلمة السر " , Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(LoginActivity.this, "تحقق من اسم المستخدم و كلمة السر " , Toast.LENGTH_SHORT).show();
+            }
         });
     }
 

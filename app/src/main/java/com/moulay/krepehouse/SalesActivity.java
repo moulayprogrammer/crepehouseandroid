@@ -9,14 +9,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.moulay.krepehouse.Adapters.SalesAdapter;
 import com.moulay.krepehouse.Models.Sale;
-import com.moulay.krepehouse.Models.SimpleFood;
-import com.moulay.krepehouse.Socket.SocketGetFoodTask;
 
 import java.util.ArrayList;
 import java.util.List;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class SalesActivity extends AppCompatActivity implements SocketGetFoodTask.SocketGetFoodCallback {
+public class SalesActivity extends AppCompatActivity  {
 
     Button getAllFood;
 
@@ -49,23 +47,10 @@ public class SalesActivity extends AppCompatActivity implements SocketGetFoodTas
             }
         });
 
-
     }
 
     public void OnGetAllFoodClick(View view) {
 
-        new SocketGetFoodTask(this).execute();
-    }
-
-    @Override
-    public void onFoodListReceived(List<SimpleFood> foodList) {
-        foodList.forEach(simpleFood -> {
-            System.out.println("name = " + simpleFood.getNameAr());
-        });
-    }
-
-    @Override
-    public void onError(Exception e) {
-
+//        new ServerGetFoodTask(this).execute();
     }
 }

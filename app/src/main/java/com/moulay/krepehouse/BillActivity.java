@@ -5,21 +5,23 @@ import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.moulay.krepehouse.Adapters.ProductAdapter;
-import com.moulay.krepehouse.Adapters.PurchasedProductAdapter;
-import com.moulay.krepehouse.Models.Product;
-import com.moulay.krepehouse.Models.PurchasedProduct;
+import com.moulay.krepehouse.Adapters.FoodAdapter;
+import com.moulay.krepehouse.Models.Food;
+import com.moulay.krepehouse.Server.ServerGetFoodTask;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BillActivity extends AppCompatActivity {
+public class BillActivity extends AppCompatActivity implements ServerGetFoodTask.ServerGetFoodCallback, FoodAdapter.OnFoodClickListener {
+
+
+    private FoodAdapter foodAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,41 +55,43 @@ public class BillActivity extends AppCompatActivity {
         //TODO: search product field  logic needs to be implemted
 
         //Products rv
-        RecyclerView rvSelectedProducts = findViewById(R.id.rvSelectedProducts);
-        rvSelectedProducts.setLayoutManager(new GridLayoutManager(this, 2)); // 2 columns
+        RecyclerView rvFoods = findViewById(R.id.rvSelectedProducts);
+        rvFoods.setLayoutManager(new GridLayoutManager(this, 2)); // 2 columns
+        List<Food> foodArrayList = new ArrayList<>();
+        foodAdapter = new FoodAdapter(foodArrayList,this,getApplicationContext());
+        rvFoods.setAdapter(foodAdapter);
 
-        List<Product> products = new ArrayList<>();
-        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-        products.add(new Product(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "120 دج"));
-
-        ProductAdapter adapter = new ProductAdapter(products);
-        rvSelectedProducts.setAdapter(adapter);
+        new ServerGetFoodTask(this).execute();
 
         //Purchased Products rv
-        RecyclerView rvPurchasedProducts = findViewById(R.id.rvPurchasedProducts);
+        /*RecyclerView rvPurchasedProducts = findViewById(R.id.rvPurchasedProducts);
         rvPurchasedProducts.setLayoutManager(new LinearLayoutManager(this));
+        List<Food> foods = new ArrayList<>();
+        PurchasedFoodAdapter purchasedProductsAdapter = new PurchasedFoodAdapter(foods);
+        rvPurchasedProducts.setAdapter(purchasedProductsAdapter);*/
 
-        List<PurchasedProduct> purchasedProducts = new ArrayList<>();
-        purchasedProducts.add(new PurchasedProduct(R.drawable.premiumphoto17077574423968784df68d028, "حليب", "Lait", "x2", "240 دج"));
-        purchasedProducts.add(new PurchasedProduct(R.drawable.premiumphoto17077574423968784df68d028, "خبز", "Pain", "x3", "90 دج"));
-        purchasedProducts.add(new PurchasedProduct(R.drawable.premiumphoto17077574423968784df68d028, "خبز", "Pain", "x3", "90 دج"));
-        purchasedProducts.add(new PurchasedProduct(R.drawable.premiumphoto17077574423968784df68d028, "خبز", "Pain", "x3", "90 دج"));
-        purchasedProducts.add(new PurchasedProduct(R.drawable.premiumphoto17077574423968784df68d028, "خبز", "Pain", "x3", "90 دج"));
-        purchasedProducts.add(new PurchasedProduct(R.drawable.premiumphoto17077574423968784df68d028, "خبز", "Pain", "x3", "90 دج"));
+    }
 
-        PurchasedProductAdapter purchasedProductsAdapter = new PurchasedProductAdapter(purchasedProducts);
-        rvPurchasedProducts.setAdapter(purchasedProductsAdapter);
+    @Override
+    public void onFoodsReceived(List<Food> foods) {
+        // Update UI with the received message
+        runOnUiThread(() -> {
+            if (!foods.isEmpty()){
+                System.out.println("test");
+                foodAdapter.setFoods(foods);
+            }else {
+                Toast.makeText(BillActivity.this, "تحقق من قائمة الطعام " , Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
+    @Override
+    public void onError(Exception e) {
+
+    }
+
+    @Override
+    public void onFoodClick(Food food) {
+        System.out.println("food is click = " + food.getNameAr());
     }
 }

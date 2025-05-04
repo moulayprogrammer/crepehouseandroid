@@ -1,38 +1,57 @@
 package com.moulay.krepehouse.Models;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Vendor implements Serializable {
+public class Vendor {
 
-    // Add this line to explicitly define serialVersionUID
-    private static final long serialVersionUID = 1L;  // Can be any long value
     private static Vendor instance;
-
-
-
-    private int uniqueId;
-    private String name;
-    private String phone;
-    private String username;
-    private String password;
-    private int archive;
-    private LocalDateTime createAt;
-    private LocalDateTime updateAt;
-
-    public Vendor() {
-    }
-
-    private Vendor(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
 
     public static Vendor getInstance() {
         synchronized (Vendor.class){
             if (instance == null) instance = new Vendor();
         }
         return instance;
+    }
+
+    private  int uniqueId;
+    private  String name;
+    private  String phone;
+    private  LocalDate dateJoined;
+    private  String username;
+    private  String password;
+    private  int archive;
+    private  LocalDateTime createAt;
+    private  LocalDateTime updateAt;
+
+    public Vendor() {
+    }
+
+    public Vendor(int uniqueId, String name, String phone, String username, String password, int archive, LocalDateTime createAt, LocalDateTime updateAt) {
+        this.uniqueId = uniqueId;
+        this.name = name;
+        this.phone = phone;
+        this.username = username;
+        this.password = password;
+        this.archive = archive;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
+    }
+
+    public Vendor(String name, String phone, String username, String password) {
+        this.name = name;
+        this.phone = phone;
+        this.username = username;
+        this.password = password;
+    }
+
+    public Vendor(String name, String phone, LocalDate dateJoined, String username, String password) {
+        this.name = name;
+        this.phone = phone;
+        this.dateJoined = dateJoined;
+        this.username = username;
+        this.password = password;
     }
 
     public int getUniqueId() {
@@ -57,6 +76,14 @@ public class Vendor implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public LocalDate getDateJoined() {
+        return dateJoined;
+    }
+
+    public void setDateJoined(LocalDate dateJoined) {
+        this.dateJoined = dateJoined;
     }
 
     public String getUsername() {

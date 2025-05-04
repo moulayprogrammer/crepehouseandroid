@@ -47,6 +47,13 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.activity)
 
+// https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
+    implementation(libs.mariadb.java.client)
+
+    // image handel
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

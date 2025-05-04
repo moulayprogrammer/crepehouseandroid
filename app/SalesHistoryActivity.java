@@ -1,4 +1,4 @@
-package com.moulay.krepehouse.Socket;
+package com.moulay.krepehouse.Server;
 
 import android.os.Bundle;
 import android.view.View;
