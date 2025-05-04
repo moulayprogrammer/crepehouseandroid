@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     card_view:cardCornerRadius="16dp"
@@ -12,10 +13,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@drawable/product_card_background"
-        android:padding="12dp">
+        android:gravity="center_vertical"
+        android:padding="5dp"
+        android:background="@drawable/product_card_background">
 
-        <!-- Product Info -->
+        <ImageView
+            android:id="@+id/ivProductImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_launcher_foreground"
+            android:scaleType="centerCrop"
+            android:background="@drawable/rounded_image"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="5dp"
+            tools:ignore="ContentDescription" />
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -28,9 +40,9 @@
                 android:layout_height="wrap_content"
                 android:text="اسم المنتج"
                 android:textColor="@color/primary"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="4dp" />
+                android:layout_marginBottom="2dp" />
 
             <TextView
                 android:id="@+id/tvProductNameFrench"
@@ -39,28 +51,17 @@
                 android:text="Nom du produit"
                 android:textColor="#000000"
                 android:alpha="0.7"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/tvProductQte"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Qte"
-                android:textColor="#000000"
-                android:alpha="0.7"
-                android:textSize="14sp" />
-
+                android:textSize="12sp" />
         </LinearLayout>
 
-        <!-- Price -->
         <TextView
             android:id="@+id/tvProductPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="240 دج"
-            android:textColor="#FBDDDD"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:text="120 دج"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginStart="4dp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

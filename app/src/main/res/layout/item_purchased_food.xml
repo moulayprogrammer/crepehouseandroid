@@ -12,20 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:padding="12dp"
-        android:background="@drawable/product_card_background">
+        android:background="@drawable/product_card_background"
+        android:padding="5dp">
 
-        <ImageView
-            android:id="@+id/ivProductImage"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_launcher_foreground"
-            android:scaleType="centerCrop"
-            android:background="@drawable/rounded_image"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="12dp" />
-
+        <!-- Product Info -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -33,33 +23,36 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvProductNameArabic"
+                android:id="@+id/tv_purchase_food_name_ar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
                 android:text="اسم المنتج"
+                android:textDirection="rtl"
                 android:textColor="@color/primary"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="2dp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvProductNameFrench"
+                android:id="@+id/tv_purchase_food_qte"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nom du produit"
-                android:textColor="#000000"
                 android:alpha="0.7"
-                android:textSize="12sp" />
+                android:text="14"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
         </LinearLayout>
 
+        <!-- Price -->
         <TextView
-            android:id="@+id/tvProductPrice"
+            android:id="@+id/tv_purchase_food_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="120 دج"
-            android:textColor="#000000"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginStart="4dp" />
+            android:layout_gravity="center_vertical"
+            android:text="240 دج"
+            android:textColor="#FBDDDD"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

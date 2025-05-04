@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layoutDirection="rtl"
+    android:textDirection="rtl"
+    android:background="@drawable/custom_dialog_background"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/dialog_qte_price_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="تعديل الكمية و السعر"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:alpha="0.7"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_marginBottom="30dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layoutDirection="rtl"
+        android:layout_marginEnd="5dp">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layoutDirection="rtl"
+            android:layout_marginEnd="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="الكمية"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:alpha="0.7"
+                android:textSize="17sp"
+                android:textAlignment="center"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="السعر"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:alpha="0.7"
+                android:textSize="17sp"
+                android:textAlignment="center"/>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layoutDirection="rtl">
+
+            <EditText
+                android:id="@+id/et_qte_dialog_qte_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="الكمية المطلوبة"
+                android:background="@drawable/rounded_edittext"
+                android:textAlignment="viewStart"
+                android:textDirection="rtl"
+                android:textSize="17sp"
+                android:inputType="number"
+                android:imeOptions="actionNext"
+                android:layout_marginBottom="5dp"/>
+
+
+            <EditText
+                android:id="@+id/et_price_dialog_qte_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="السعر"
+                android:background="@drawable/rounded_edittext"
+                android:textAlignment="viewStart"
+                android:textDirection="rtl"
+                android:textSize="17sp"
+                android:inputType="numberDecimal"
+                android:imeOptions="actionDone"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layoutDirection="rtl"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/btn_cancel_dialog_qte_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:stateListAnimator="@null"
+            android:text="إلغاء"
+            android:textSize="17sp"
+            android:textAllCaps="false"
+            android:backgroundTint="#F44336"
+            android:textColor="#FFF" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+
+        <Button
+            android:id="@+id/btn_ok_dialog_qte_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:stateListAnimator="@null"
+            android:text="تأكيد"
+            android:textSize="17sp"
+            android:textAllCaps="false"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFF"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

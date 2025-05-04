@@ -187,13 +187,14 @@
                     android:layout_weight="1"
                     android:background="@drawable/rounded_edittext"
                     android:clipToPadding="false"
-                    android:padding="8dp" />
+                    android:padding="3dp" />
 
                 <!-- Total Price -->
                 <TextView
+                    android:id="@+id/lb_bill_total"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="999,999,999"
+                    android:text="0.00"
                     android:textSize="18sp"
                     android:gravity="center"
                     android:background="@drawable/rounded_total_background"
