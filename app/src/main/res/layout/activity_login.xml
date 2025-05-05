@@ -83,20 +83,22 @@
             android:layout_height="32dp" />
 
         <!-- Username Field -->
+
+        <!-- Password Field -->
         <EditText
             android:id="@+id/etUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="اسم المستخدم"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/rounded_edittext"
+            android:hint="اسم المستخدم"
             android:padding="16dp"
             android:textAlignment="viewStart"
             android:textDirection="rtl"
             android:textSize="16sp"
-            android:layout_marginBottom="16dp"
+            android:inputType="text"
             android:imeOptions="actionNext"/>
 
-        <!-- Password Field -->
         <EditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
@@ -109,8 +111,6 @@
             android:textDirection="rtl"
             android:textSize="16sp"
             android:layout_marginBottom="24dp"
-            android:drawableEnd="@drawable/ic_visibility"
-            android:drawablePadding="12dp"
             android:imeOptions="actionDone"/>
 
         <!-- Login Button -->

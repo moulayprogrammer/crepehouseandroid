@@ -26,12 +26,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     buildFeatures {
         viewBinding = true
     }
+    dependenciesInfo {
+        includeInApk = true
+        includeInBundle = true
+    }
+    buildToolsVersion = "35.0.0"
 }
 
 dependencies {
@@ -49,6 +54,8 @@ dependencies {
 
 // https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
     implementation(libs.mariadb.java.client)
+
+    implementation(libs.threetenabp)
 
     // image handel
     implementation(libs.glide)

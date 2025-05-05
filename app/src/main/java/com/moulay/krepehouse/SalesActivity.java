@@ -2,49 +2,62 @@ package com.moulay.krepehouse;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.moulay.krepehouse.Adapters.SalesAdapter;
 import com.moulay.krepehouse.Models.Sale;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.moulay.krepehouse.Models.Vendor;
+import com.moulay.krepehouse.Server.ServerGetBillsTask;
 
-public class SalesActivity extends AppCompatActivity  {
+import org.threeten.bp.LocalDate;
 
-    Button getAllFood;
+public class SalesActivity extends AppCompatActivity implements ServerGetBillsTask.ServerGetBillsCallback {
+
+    ImageButton btnLogOut;
+    TextView tvTotalSales;
+
+    SalesAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sales);
 
+        AndroidThreeTen.init(this); // Initialize ThreeTenABP
+
+        btnLogOut = findViewById(R.id.btnLogout);
+        btnLogOut.setOnClickListener(view -> {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        });
+
+        tvTotalSales = findViewById(R.id.tvTotalSales);
+
         // Sales RecyclerView
         RecyclerView rvSalesHistory = findViewById(R.id.rvSalesHistory);
         rvSalesHistory.setLayoutManager(new LinearLayoutManager(this));
-
         List<Sale> sales = new ArrayList<>();
-        sales.add(new Sale("12345", "15-10-2023 14:30", 5, 1250.00));
-        sales.add(new Sale("12346", "16-10-2023 10:15", 3, 850.50));
-        sales.add(new Sale("12347", "17-10-2023 16:45", 7, 2100.75));
-        sales.add(new Sale("12348", "18-10-2023 09:20", 2, 450.00));
-        sales.add(new Sale("12349", "19-10-2023 11:30", 4, 980.00));
-
-        SalesAdapter adapter = new SalesAdapter(sales);
+        adapter = new SalesAdapter(sales);
         rvSalesHistory.setAdapter(adapter);
 
-        FloatingActionButton fabNewOrder = findViewById(R.id.fabNewOrder);
+        new ServerGetBillsTask(this, Vendor.getInstance().getUniqueId(), LocalDate.now()).execute();
 
-        fabNewOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SalesActivity.this, BillActivity.class); // Replace "CurrentActivity" with your actual activity name
-                startActivity(intent);
-            }
+        FloatingActionButton fabNewOrder = findViewById(R.id.fabNewOrder);
+        fabNewOrder.setOnClickListener(v -> {
+            Intent intent = new Intent(SalesActivity.this, BillActivity.class); // Replace "CurrentActivity" with your actual activity name
+            startActivity(intent);
         });
 
     }
@@ -52,5 +65,25 @@ public class SalesActivity extends AppCompatActivity  {
     public void OnGetAllFoodClick(View view) {
 
 //        new ServerGetFoodTask(this).execute();
+    }
+
+    @Override
+    public void onSalesReceived(List<Sale> sales) {
+        // Update UI with the received sales
+        runOnUiThread(() -> {
+            if (!sales.isEmpty()){
+                AtomicReference<Float> total = new AtomicReference<>(0.0F);
+                sales.forEach(sale -> {
+                    total.set(total.get() + sale.getAmount());
+                });
+                tvTotalSales.setText(String.format("%,.2f دج", total.get()));
+                adapter.setSales(sales);
+            }
+        });
+    }
+
+    @Override
+    public void onError(Exception e) {
+
     }
 }

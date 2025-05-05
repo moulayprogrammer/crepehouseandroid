@@ -33,8 +33,7 @@ public class ServerGetFoodTask extends AsyncTask<Void, Void, List<Food>> {
             Connection conn = connectBD.connect();
 
             String query = "SELECT `food`.`UniqueID` , `NAME_AR`, `NAME_FR`, `PRICE`, `DESCRIPTION`, `PICTURE`,\n" +
-                    "`ARCHIVE`,`food`.`CREATE_AT`,`food`.`UPDATE_AT`\n" +
-                    "FROM `food` \n" +
+                    "`ARCHIVE`,`food`.`CREATE_AT`,`food`.`UPDATE_AT` FROM `food` \n" +
                     "JOIN `food_menu` ON `food`.`UniqueID` = `food_menu`.`UniqueID_FOOD`\n" +
                     "JOIN `menu` ON `menu`.`UniqueID` = `food_menu`.`UniqueID_MENU`\n" +
                     "WHERE `menu`.`SELECTED` = TRUE";

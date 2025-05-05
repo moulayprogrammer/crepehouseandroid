@@ -58,46 +58,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/appbar"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:background="@drawable/rounded_card"
-        android:layout_margin="16dp"
-        android:padding="16dp">
+        android:layout_margin="5dp">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="إجمالي المبيعات"
             android:textSize="18sp"
             android:textColor="@color/primary"
             android:textStyle="bold"
-            android:gravity="center"/>
+            android:layout_gravity="center"/>
 
         <TextView
             android:id="@+id/tvTotalSales"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="5900.00 دج"
+            android:text="0.00 دج"
             android:textSize="24sp"
             android:textColor="#333"
-            android:gravity="center"
-            android:layout_marginTop="8dp"/>
+            android:gravity="center"/>
     </LinearLayout>
 
     <!-- Sales History List -->
+
+    <!-- Floating Action Button for New Order -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSalesHistory"
         android:layout_width="match_parent"
         android:layout_height="196dp"
         android:layout_above="@id/fabNewOrder"
         android:layout_below="@id/totalSummary"
-        android:layout_marginTop="8dp"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="-80dp"
         android:background="@drawable/rounded_card"
         android:clipToPadding="false"
-        android:padding="8dp" />
+        android:padding="5dp" />
 
-    <!-- Floating Action Button for New Order -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabNewOrder"
         android:layout_width="wrap_content"
