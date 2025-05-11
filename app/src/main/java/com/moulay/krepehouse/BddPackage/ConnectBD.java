@@ -1,6 +1,8 @@
 package com.moulay.krepehouse.BddPackage;
 
 
+import com.moulay.krepehouse.Statics;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,7 +15,7 @@ public class ConnectBD {
 
     public  Connection connect() {
         Connection conn = null;
-        String url = "jdbc:mariadb://192.168.11.54:3306/crepehouse";
+        String url = "jdbc:mariadb://" + Statics.SERVER_ADDRESS+ "3306/crepehouse";
 
         String user = "remote_user";
         String password = "12345";
