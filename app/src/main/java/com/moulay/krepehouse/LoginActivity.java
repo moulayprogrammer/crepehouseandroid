@@ -87,4 +87,8 @@ public class LoginActivity extends AppCompatActivity implements ServerLoginTask.
             Toast.makeText(LoginActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         });
     }
+
+    public void OnIpChange(View view) {
+
+    }
 }
