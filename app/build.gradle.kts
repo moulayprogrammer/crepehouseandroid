@@ -53,14 +53,18 @@ dependencies {
     implementation(libs.activity)
 
 // https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
-    implementation(libs.mariadb.java.client)
+    implementation("org.mariadb.jdbc:mariadb-java-client:3.5.3")
 
-    implementation(libs.threetenabp)
+// https://mvnrepository.com/artifact/com.jakewharton.threetenabp/threetenabp
+    implementation("com.jakewharton.threetenabp:threetenabp:1.4.9")
 
     // image handel
-    implementation(libs.glide)
-    annotationProcessor(libs.compiler)
+// https://mvnrepository.com/artifact/com.github.bumptech.glide/glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+// https://mvnrepository.com/artifact/com.github.bumptech.glide/annotations
+    implementation("com.github.bumptech.glide:annotations:4.16.0")
 
+    
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

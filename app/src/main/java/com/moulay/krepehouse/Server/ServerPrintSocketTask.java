@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 
 import com.moulay.krepehouse.BddPackage.ConnectBD;
 import com.moulay.krepehouse.Models.Vendor;
+import com.moulay.krepehouse.Statics;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,14 +36,14 @@ public class ServerPrintSocketTask extends AsyncTask<Void, Void, Boolean> {
     protected Boolean doInBackground(Void... voids) {
         try {
 
-            String serverIP = "192.168.11.54"; // Use 10.0.2.2 for emulator (localhost on host)
+            String serverIP = Statics.SERVER_ADDRESS; // Use 10.0.2.2 for emulator (localhost on host)
             int port = 9090;
 
             try (Socket socket = new Socket(serverIP, port);
                  PrintWriter out = new PrintWriter(socket.getOutputStream(),true)) {
 
                 // Send message to server
-                out.println(String.valueOf(billId));
+                out.println(billId);
 //                out.flush();
 
 
