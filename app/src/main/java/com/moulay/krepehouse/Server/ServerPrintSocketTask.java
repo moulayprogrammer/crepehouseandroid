@@ -21,6 +21,9 @@ public class ServerPrintSocketTask extends AsyncTask<Void, Void, Boolean> {
     private final SocketLoginCallback callback;
     private final int billId;
 
+    Vendor vendor = Vendor.getInstance();
+    String ip = vendor.getIp();
+
 
     public interface SocketLoginCallback {
         void onPrint(boolean message);
@@ -36,7 +39,7 @@ public class ServerPrintSocketTask extends AsyncTask<Void, Void, Boolean> {
     protected Boolean doInBackground(Void... voids) {
         try {
 
-            String serverIP = Statics.SERVER_ADDRESS; // Use 10.0.2.2 for emulator (localhost on host)
+            String serverIP = ip; // Use 10.0.2.2 for emulator (localhost on host)
             int port = 9090;
 
             try (Socket socket = new Socket(serverIP, port);

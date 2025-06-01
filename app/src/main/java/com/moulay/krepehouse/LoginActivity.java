@@ -1,13 +1,17 @@
 package com.moulay.krepehouse;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -17,10 +21,14 @@ import com.moulay.krepehouse.Models.Vendor;
 import com.moulay.krepehouse.Server.ServerLoginTask;
 import com.moulay.krepehouse.Server.ServerPrintSocketTask;
 
+import java.util.Objects;
+
 public class LoginActivity extends AppCompatActivity implements ServerLoginTask.SocketLoginCallback {
 
     EditText etUsername,etPassword;
     Vendor vendor = Vendor.getInstance();
+
+    private SharedPreferences sharedPref;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -38,6 +46,10 @@ public class LoginActivity extends AppCompatActivity implements ServerLoginTask.
             }
             return false;
         });
+
+        // Save configuration
+        sharedPref = getSharedPreferences("config", LoginActivity.MODE_PRIVATE);
+        vendor.setIp(sharedPref.getString("ip", "192.168.1.1"));
     }
 
     public void OnLoginClick(View view) {
@@ -89,6 +101,50 @@ public class LoginActivity extends AppCompatActivity implements ServerLoginTask.
     }
 
     public void OnIpChange(View view) {
+
+        Dialog dialog;
+
+        //Create the Dialog here
+        dialog = new Dialog(LoginActivity.this);
+        dialog.setContentView(R.layout.dialog_ip_change);
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(getDrawable(R.drawable.custom_dialog_background));
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false); //Optional
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog.
+
+        Button Okay = dialog.findViewById(R.id.btn_ok_dialog_ip);
+        Button Cancel = dialog.findViewById(R.id.btn_cancel_dialog_ip);
+        EditText etIp = dialog.findViewById(R.id.et_ip_address);
+        String ip = sharedPref.getString("ip", "192.168.1.1");
+
+        etIp.setText(ip);
+        etIp.setOnEditorActionListener((textView, i, keyEvent) -> {
+            if (i == EditorInfo.IME_ACTION_DONE) {
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("ip", etIp.getText().toString().trim());
+                editor.apply(); // Async save (use commit() for blocking)
+
+                vendor.setIp(etIp.getText().toString().trim());
+                dialog.dismiss();
+                return true;
+
+            }
+            dialog.dismiss();
+            return false;
+
+        });
+
+        Okay.setOnClickListener(view1 -> {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("ip", etIp.getText().toString().trim());
+            editor.apply(); // Async save (use commit() for blocking)
+
+            vendor.setIp(etIp.getText().toString().trim());
+            dialog.dismiss();
+        });
+        Cancel.setOnClickListener(view1 -> dialog.dismiss());
+
+        dialog.show();
 
     }
 }

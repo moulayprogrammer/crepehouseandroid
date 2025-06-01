@@ -18,6 +18,7 @@ public class Vendor {
     private  int uniqueId;
     private  String name;
     private  String phone;
+    private String ip;
     private  LocalDate dateJoined;
     private  String username;
     private  String password;
@@ -68,6 +69,14 @@ public class Vendor {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
     public String getPhone() {

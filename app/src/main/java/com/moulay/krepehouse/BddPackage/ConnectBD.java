@@ -1,6 +1,7 @@
 package com.moulay.krepehouse.BddPackage;
 
 
+import com.moulay.krepehouse.Models.Vendor;
 import com.moulay.krepehouse.Statics;
 
 import java.sql.Connection;
@@ -13,9 +14,12 @@ public class ConnectBD {
 
     }
 
+    Vendor vendor = Vendor.getInstance();
+    String ip = vendor.getIp();
+
     public  Connection connect() {
         Connection conn = null;
-        String url = "jdbc:mariadb://" + Statics.SERVER_ADDRESS+ "3306/crepehouse";
+        String url = "jdbc:mariadb://" + ip+ "3306/crepehouse";
 
         String user = "remote_user";
         String password = "12345";
